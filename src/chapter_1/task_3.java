@@ -7,20 +7,16 @@ public class task_3 {
         Scanner sc = new Scanner(System.in);
 
         String st1 = sc.next();
-        String st2 = sc.next();
+        int temp = 0;
+        String  vowels = ("aeiouAEIOU");
 
-        String vowels = "aeiuoAEIUO";
-        String res = "";
-
-        for(int i = 0; i < st1.length(); i++){
-            for(int j = 0; j < st2.length(); j++){
-                if(i == vowels && j == vowels){
-                    res += j;
-                    res += i;
-
-                }
+        for (int i = 0; i < st1.length(); i++) {
+            char c = st1.charAt(i);
+            if(vowels.indexOf(c) != - 1) {
+                temp++;
             }
         }
-        System.out.println();
+        System.out.println(temp);
     }
+
 }

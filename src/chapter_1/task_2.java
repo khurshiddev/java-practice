@@ -6,27 +6,20 @@ public class task_2 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        String n1 = sc.next();
-        String n2 = sc.next();
+        String n1 = sc.next().toLowerCase();
+        String n2 = sc.next().toLowerCase();
 
-        String vowels = ("aeiouAEIOU");
-        String res1 = "";
-        String res2 = "";
+//        String  vowels = ("aeiouAEIOU");
+        n1 = n1.replaceAll("[aeiouAEIOU]","");
+        n2 = n2.replaceAll("[aeiouAEIOU]","");
 
-        for(int i = 0; i < n1.length(); i++){
-            char ch = n1.charAt(i);
-            if(n1 == vowels){
-                res1 += ch;
-            }
-        }
-        for(int i = 0; i < n1.length(); i++){
-            char ch = n2.charAt(i);
-            if(n1 == vowels){
-                res2 += ch;
-            }
+        if(n1.equalsIgnoreCase(n2)){
+            System.out.println("true");
+        }else {
+            System.out.println("false");
         }
 
-        System.out.println(res1.equals(res2));
+
 
     }
 }
