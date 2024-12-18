@@ -22,8 +22,7 @@ class Client{
         this.balance = 0;
     }
     void addSum (int sum){
-         balance += sum;
-        System.out.println("add sum = " + balance);
+         this.balance += sum;
          }
 
     boolean isActive(){
@@ -32,20 +31,18 @@ class Client{
         return isCheck;
     }
     void call (int call){
-//        int callCash = 0;
         if(balance >=call){
             balance -= call;
-            call = balance;
-            System.out.println(call +" = call minute");
+
+            System.out.println(balance +" = call minute");
     }else{
             System.out.println("cash is empty ");
         }
 }
 void sms(int sms) {
-//    int smsCash = 0;
     if (balance > sms) {
         balance -= sms;
-        System.out.println(sms + " = sms count");
+        System.out.println(balance + " = sms count");
     } else {
         System.out.println("cash is empty ");
     }
