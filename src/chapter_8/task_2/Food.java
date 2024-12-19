@@ -1,4 +1,4 @@
-package chapter_8;
+package chapter_8.task_2;
 
 public class Food {
     private Receipt receipt;
