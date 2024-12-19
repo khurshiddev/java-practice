@@ -1,16 +1,21 @@
 package chapter_7.task_1;
 
-class App {
-    String appName;
-    int appSize;
+public class App {
+        private String name;
+        private int size;
+        boolean isRunning;
 
-    App(String name, int appSize) {
-        this.appName = name;
-        this.appSize = appSize;
+        App(String name, int size) {
+            this.name = name;
+            this.size = size;
+        }
+
+        public String getName() {
+            return name;
+        }
+        public int getSize() {
+            return size;
+        }
     }
 
-    @Override
-    public String toString() {
-        return "AppName" + appName + " size = " + appSize;
-    }
-}
+
