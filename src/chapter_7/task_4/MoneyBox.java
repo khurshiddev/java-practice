@@ -27,7 +27,6 @@ public class MoneyBox {
     boolean isFull(){
         return currentSum == sum;
 
-
     }
 
     public int getMoneyCount() {
