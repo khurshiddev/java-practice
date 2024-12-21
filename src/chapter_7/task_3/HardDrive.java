@@ -8,8 +8,6 @@ public  class HardDrive {
     HardDrive(int hardSize) {
         this.hardSize = hardSize;
         this.currentSize = 0;
-
-
     }
 
     void write(File file) {

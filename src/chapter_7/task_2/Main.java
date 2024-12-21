@@ -7,6 +7,7 @@ public class Main {
         Bus b = new Bus(c, t);
         int t1 = b.inPassager(95);
         int t6 = b.inPassager(5);
+        int t7 = b.inPassager(5);
         int t2 = b.outPassager(5);
         int t3 = b.outPassager(10);
         int t4 = b.outPassager(85);
