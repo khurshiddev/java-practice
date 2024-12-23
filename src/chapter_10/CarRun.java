@@ -33,6 +33,7 @@ public class CarRun {
 
 
     private static int index = 0;
+
     private static void checkTest(Integer result, Integer expected) {
         if (result != expected && !expected.equals(result)) {
             throw new ArithmeticException("Natija xato");
@@ -46,8 +47,8 @@ class Battery {
     private int batterySize;
     private boolean isFull;
 
-    public Battery(int sigim) {
-        this.batterySize = sigim;
+    public Battery(int batterySize) {
+        this.batterySize = batterySize;
         this.isFull = true;
     }
 
@@ -67,18 +68,18 @@ class Battery {
 class Car {
     private int slots;
     private int power;
-    private Battery[] batareka;
+    private Battery[] battery;
 
-    public Car(int battare, int mator) {
-        this.slots = battare;
-        this.power = mator;
-        this.batareka = new Battery[battare];
+    public Car(int battarey, int power) {
+        this.slots = battarey;
+        this.power = power;
+        this.battery = new Battery[battarey]; // massiv ochdik
     }
 
     public boolean addBattery(Battery battery) {
         for (int i = 0; i < slots; i++) {
-            if (batareka[i] == null) { // Bo'sh joy topilsa
-                batareka[i] = battery;
+            if (this.battery[i] == null) { // Bo'sh joy topilsa
+                this.battery[i] = battery;
                 return true;
             }
         }
@@ -86,18 +87,18 @@ class Car {
     }
 
     public int getBatteryInfo() {
-        int tolaBatare = 0;
-        for (Battery battery : batareka) {
+        int totalBattery = 0;
+        for (Battery battery : battery) {
             if (battery != null && battery.isFull()) {
-                tolaBatare++;
+                totalBattery++;
             }
         }
-        return (tolaBatare * 100) / slots;
+        return (totalBattery * 100) / slots;
     }
 
     public boolean run(int minutes) {
         int capacity = 0;
-        for (Battery battery : batareka) {
+        for (Battery battery : battery) {
             if (battery != null && battery.isFull()) {
                 capacity += battery.getBatterySize();
             }
@@ -107,7 +108,7 @@ class Car {
         double power = current * 1.5;
 
         if (power >= this.power) {
-            for (Battery battery : batareka) {
+            for (Battery battery : battery) {
                 if (battery != null) {
                     battery.discharge();
                 }
