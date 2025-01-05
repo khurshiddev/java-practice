@@ -2,19 +2,23 @@ package chapter_8.task_1;
 
 public class Main {
     public static void main(String[] args) {
-        Meat meat = new Meat(5);
-        Oil oil = new Oil(2);
-        Onion onion = new Onion(2);
-        Salt salt = new Salt(10);
-        Egg egg = new Egg(5);
+        Egg egg = new Egg("Egg", 2);
+        Meat meat = new Meat("Meat", 1);
+        Oil oil = new Oil("Oil", 1);
+        Rise rise = new Rise("Rise", 3);
+        Rise rise2 = new Rise("Rise", 1);
 
-        Caldron caldron = new Caldron(20);
+        Caldron caldron = new Caldron(5);
+        caldron.add(egg);
+        caldron.add(rise2);
         caldron.add(meat);
         caldron.add(oil);
-        caldron.add(onion);
-        caldron.add(salt);
-        caldron.add(egg);
-        caldron.showIngredients();
-    }
+        caldron.add(rise);
+        caldron.showIngredient();
+        System.out.println("Free space = " + caldron.getFreeSpace());
+        System.out.println("Used space = " + caldron.getUsedSpace());
+        System.out.println("Caldron is empty = " + caldron.isEmpty());
+        System.out.println("Caldron is empty = "+caldron.isFull());
 
+    }
 }
