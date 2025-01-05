@@ -1,65 +1,59 @@
 package chapter_8.task_1;
 
 public class Caldron {
-    int caldronSize;
-    int ingredients;
-    int space;
-    Ingredient[] ingredientArr;
+    private int size;
+    private int count;
+    Ingredients[] ingredients;
 
-    Caldron(int size) {
-        this.caldronSize = size;
-        this.space = size;
-        ingredientArr = new Ingredient[size];
-
+    public Caldron(int size) {
+        this.size = size;
+        this.ingredients = new Ingredients[size];
+        this.count = 0;
     }
 
-    int getCaldronSize() {
-        return caldronSize;
-    }
-
-    void add(Ingredient ingredient) {
-        if (space < ingredient.getSize()) {
-            System.out.println("Bosh joy yo'q");
-            return;
+    private int indexOf(String name) {
+        for (int i = 0; i < count; i++) {
+            Ingredients ing = ingredients[i];
+            if (ing.name.equals(name)) {
+                return i;
+            }
         }
-        System.out.println(ingredient.getName() + "  qo'shildi");
-
-        System.out.println("----------------------------");
-        ingredientArr[ingredients++] = ingredient;
-        space -= ingredient.getSize();
+        return -1;
     }
 
-
-    boolean isEmpty() {
-        return space == caldronSize;
-    }
-
-    boolean isFully() {
-        if (caldronSize == space) {
-            System.out.println("Caldronni joyi to'la");
-            return true;
+    public void add(Ingredients ingred){
+        int check = indexOf(ingred.name);
+        if(check != -1) {
+            ingredients[check].count += ingred.count;
+        } else if (size >= count) {
+            ingredients[count++] = ingred;
+        }else {
+            System.out.println("Caldros is full");
         }
-        return false;
     }
 
-    void showIngredients() {
-        System.out.println("Hamma Maxsulotlar: ");
-        for (int i = 0; i < ingredients; i++) {
-            System.out.println("Name: " + ingredientArr[i].getName());
-            System.out.println("Size: " + ingredientArr[i].getSize());
+    public void showIngredient() {
+        for (int i = 0; i < count; i++) {
+            System.out.println("name = " + ingredients[i].name);
+            System.out.println("count = " + ingredients[i].count);
         }
-
     }
 
-    int getUsedSpace() {
-        return space - caldronSize;
+    public boolean isFull() {
+        return count == size;
+    }
+    public boolean isEmpty() {
+        return count == 0;
     }
 
-    int getFreeSpace() {
-        return space;
+    public int getFreeSpace(){
+        return size - count;
     }
-
-
+    public int getUsedSpace(){
+        return count;
+    }
 }
+
+
 
 
