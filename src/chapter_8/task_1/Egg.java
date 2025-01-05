@@ -1,8 +1,7 @@
 package chapter_8.task_1;
 
-public class Egg extends Ingredient {
-
-    Egg(int count){
-        super("Egg",count);
+public class Egg extends Ingredients{
+    public Egg(String name, int count) {
+        super(name, count);
     }
 }
