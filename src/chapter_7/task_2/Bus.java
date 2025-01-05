@@ -21,7 +21,10 @@ class Bus {
         if (inPassager + personCount <= capacity.capacity ) {
             personCount += inPassager;
             getBalance = personCount * ticket.ticketPrice;
-            System.out.println(personCount + " shuncha yo'lovchi chiqti");
+            if(inPassager >= personCount + capacity.capacity ){
+                personCount -= inPassager;
+                System.out.println(personCount + " shuncha yo'lovchi chiqti" );
+            }
         } else {
             System.out.println("Avtobusda joy yo'q yo'lovchilar sig'madi ");
         }
