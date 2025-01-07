@@ -4,7 +4,7 @@ public class task_5 {
     public static void main(String[] args) {
 
 //        Book book = new Book("O'tkan kunlar", 20000);
-//        BookShop bookShop = new BookShop("Kitoblar olami", 2_000_000);
+//        BookShop11 bookShop = new BookShop11("Kitoblar olami", 2_000_000);
 //        System.out.println(bookShop.buyBook(book, 20));
 //        System.out.println(bookShop.hasBook());
 //        bookShop.hasBook(book);
@@ -14,7 +14,7 @@ public class task_5 {
         Book book1 = new Book("C++", 20_000);
         Book book2 = new Book("Java", 25_000);
         Book book3 = new Book("Kotlin", 25_000);
-        BookShop shop = new BookShop("Kitoblar olami", 1_000_000);
+        BookShop11 shop = new BookShop11("Kitoblar olami", 1_000_000);
 
         // Testlar
         checkTest(false, shop.hasBook());  // Do'konda kitob yo'q
@@ -43,8 +43,8 @@ public class task_5 {
 //    public Book(String name, int cost) {
 //    }
 //}
-//class BookShop {
-//    public BookShop(String name, int money) {
+//class BookShop11 {
+//    public BookShop11(String name, int money) {
 //    }
 //
 //    public int buyBook(Book book, int count) {
@@ -93,14 +93,14 @@ class Book {
 
 }
 
-class BookShop {
+class BookShop11 {
     private Book[] books;
     private int[] counts;
     private String libraryName;
     private int money;
     private int bookCount;
 
-    public BookShop(String libraryName, int money) {
+    public BookShop11(String libraryName, int money) {
         books = new Book[100];
         this.counts = new int[100];
         this.libraryName = libraryName;
