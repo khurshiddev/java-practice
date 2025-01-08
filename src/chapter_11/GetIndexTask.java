@@ -16,13 +16,13 @@ public class GetIndexTask {
 }
 
 class A{
-   private int incCount;
+    private int increment;
     static int counter;
+
     public A(){
-        incCount = ++counter;
+        this.increment = ++counter;
     }
     public int getIndex(){
-        return incCount;
+        return increment;
     }
-
 }
