@@ -2,16 +2,19 @@ package chapter_7.task_1;
 
 public class AppTask {
     public static void main(String[] args) {
-        App app = new App("Telegram", 7);
+        App app1 = new App("Telegram", 7);
+        App app2 = new App("WhatsApp", 5);
+        App app3 = new App("Instagram", 4);
         Device device = new Device(120);
-        System.out.println(device.install(app));
-        device.info();
+        device.install(app1);
+        device.install(app2);
+        device.install(app3);
         device.run("Telegram");
-        System.out.println(device.uninstall("Telegram"));
-        System.out.println("------");
+        device.run("WhatsApp");
+        device.uninstall("Telegram");
+
         device.info();
-        System.out.println(device.install(app));
-        device.info();
+
 
 
     }
@@ -49,7 +52,7 @@ class Device {
     public Device(int memory) {
         this.memory = memory;
         this.app = new App[memory];
-        this.runningApps = new boolean[100];
+        this.runningApps = new boolean[memory];
         this.appCount = 0;
         this.runCount = 0;
     }
@@ -58,6 +61,7 @@ class Device {
         int check = checkName(apps.getAppName());
         if (check != -1) {
             app[check].setAppSize(app[check].getAppSize() + apps.getAppSize());
+            return true;
         } else if (memory >= apps.getAppSize()) {
             app[appCount] = apps;
             runningApps[appCount] = false;
@@ -72,18 +76,22 @@ class Device {
     }
 
     private void shiftFiles(int index) {
-        for (int i = 0; i < appCount - 1; i++) {
+        for (int i = index; i < appCount - 1; i++) {
             app[i] = app[i + 1];
             runningApps[i] = runningApps[i + 1];
         }
-        app[--appCount] = null; // remove last element
+        app[appCount - 1] = null;// remove last element
+        runningApps[appCount - 1] = false;//remove last element
+        appCount--;
     }
 
     public boolean uninstall(String name) {
         for (int i = 0; i < appCount; i++) {
             if (app[i] != null && app[i].getAppName().equals(name)) {
                 memory += app[i].getAppSize();
-                if (runningApps[i]) runCount--;
+                if (runningApps[i]) {
+                    runCount--;
+                }
                 shiftFiles(i);
                 System.out.println("App " + name + "Uninstalled successfully");
                 return true;
