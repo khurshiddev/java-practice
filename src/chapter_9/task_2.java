@@ -10,7 +10,7 @@ public class task_2 {
         System.out.println(doira.hisoblash());
         System.out.println(doira.perimetr());
 
-        Tortburchak tort = new Tortburchak(18, 20, 20,10);
+        Tortburchak tort = new Tortburchak(18, 20, 20, 10);
         System.out.println(tort.hisoblash());
         System.out.println(tort.perimetr());
     }
@@ -86,6 +86,6 @@ class Tortburchak extends Shakl {
 
     @Override
     public double perimetr() {
-        return perimetr = 2*(width + length);
+        return perimetr = 2 * (width + length);
     }
 }
