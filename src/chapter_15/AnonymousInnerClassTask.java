@@ -4,7 +4,6 @@ public class AnonymousInnerClassTask {
     public static void main(String[] args) {
 
         Shape rectangle = new Shape() {
-
             @Override
             public double draw(double width, double length) {
                 return width * length;
@@ -26,9 +25,9 @@ public class AnonymousInnerClassTask {
             }
         };
 
-        System.out.println("ractangle is: "+rectangle.draw(2,5));
-        System.out.println("circle is: "+circle.draw(2,5));
-        System.out.println("triangle is: "+triangle.draw(2,5));
+        System.out.println("ractangle is: " + rectangle.draw(2, 5));
+        System.out.println("circle is: " + circle.draw(2, 5));
+        System.out.println("triangle is: " + triangle.draw(2, 5));
 
     }
 }
