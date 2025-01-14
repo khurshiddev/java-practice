@@ -3,11 +3,11 @@ package chapter_16;
 public class CarOilTask {
     public static void main(String[] args) {
 
-        Capacity c = new Capacity(45);
-        Oil o = new Oil(45);
-        OutGoing cr = new OutGoing(100, 5);
+        Capacity c = new Capacity(50);
+        Oil o = new Oil(50);
+        OutGoing cr = new OutGoing(1,10);
         Car car = new Car(cr, c);
-        Direction d = new Direction(20);
+        Direction d = new Direction(5);
 
         System.out.println("car go = " + car.go(d));
         System.out.println("car oil added = " + car.addOil(o));
@@ -41,21 +41,25 @@ class Oil {
         return oil;
     }
 
-
-
-//    public void setOil(int oil) {
-//        this.oil = oil;
-//    }
+    public void setOil(int oil) {
+        this.oil = oil;
+    }
 }
 
 class OutGoing {
     private int road;
     private int range;
 
-    public OutGoing(int road, int range) {
-        this.road = road;
+    public OutGoing( int range, int road ) {
         this.range = range;
+        this.road = road;
     }
+
+    public int getRange() {
+        return range;
+    }
+
+
 }
 
 class Direction {
@@ -74,7 +78,6 @@ class Car {
     private OutGoing outGoing;
     private Capacity capacity;
     private Oil oils;
-    private Direction direction;
 
 
     public Car(OutGoing outGoing, Capacity capacity) {
@@ -85,11 +88,10 @@ class Car {
 
 
     boolean go(Direction direction) {
-        this.direction = direction;
+        int requid = direction.getDirectRange() * outGoing.getRange();
         if (oils.getOil() == 0) return false;
-        int range = oils.getOil() * direction.getDirectRange();
-        if (range > direction.getDirectRange()) {
-            oils.oil -= direction.getDirectRange();
+        if (oils.getOil() >= requid) {
+            oils.setOil(oils.getOil() - requid);
             return true;
         }
         return false;
@@ -97,7 +99,7 @@ class Car {
 
     boolean addOil(Oil oil) {
         if (capacity.getCapacity() >= oil.getOil() + oils.getOil()) {
-            oils.oil += oil.oil;
+            oils.setOil(oils.getOil() + oil.getOil());
             return true;
         }
         System.out.println("no empty space ");
@@ -113,7 +115,6 @@ class Car {
     }
 
     int getMaxDirection() {
-
-        return oils.getOil() * direction.getDirectRange();
+        return oils.getOil() / outGoing.getRange();
     }
 }
