@@ -3,118 +3,112 @@ package chapter_16;
 public class CarOilTask {
     public static void main(String[] args) {
 
-        Capacity c = new Capacity(50);
-        Oil o = new Oil(50);
-        OutGoing cr = new OutGoing(1,10);
+        Capacity c = new Capacity(45);
+        Oil o = new Oil(45);
+        Outgoing cr = new Outgoing(100, 10);
         Car car = new Car(cr, c);
-        Direction d = new Direction(5);
+        Direction d = new Direction(23);
 
         System.out.println("car go = " + car.go(d));
+        System.out.println("car has oil = " + car.hasOil());
+
         System.out.println("car oil added = " + car.addOil(o));
         System.out.println("car go = " + car.go(d));
         System.out.println("car has oil = " + car.hasOil());
         System.out.println("car getMaxDirection = " + car.getMaxDirection());
-        System.out.println("car is full = " + car.isFull());
+        System.out.println("car is full = " + car.isFullOil());
+
+
     }
 }
 
-class Capacity {
-    private int capacity;
-
-    public Capacity(int capacity) {
+class Capacity{
+    public int capacity;
+    Capacity(int capacity){
         this.capacity = capacity;
+
     }
 
     public int getCapacity() {
         return capacity;
     }
 }
-
-class Oil {
-    int oil;
-
-    public Oil(int oil) {
-        this.oil = oil;
+class Oil{
+    public int totalOil;
+    Oil(int oil){
+        this.totalOil = oil;
     }
 
-    public int getOil() {
-        return oil;
-    }
-
-    public void setOil(int oil) {
-        this.oil = oil;
+    public int getTotalOil() {
+        return totalOil;
     }
 }
-
-class OutGoing {
-    private int road;
-    private int range;
-
-    public OutGoing( int range, int road ) {
-        this.range = range;
-        this.road = road;
+class Outgoing{
+    public int road;
+    public int letr;
+    Outgoing(int road, int letr){
+        this.road=road;
+        this.letr =letr;
     }
 
-    public int getRange() {
-        return range;
+    public int getRoad() {
+        return road;
     }
 
-
-}
-
-class Direction {
-    private int directRange;
-
-    public Direction(int directRange) {
-        this.directRange = directRange;
-    }
-
-    public int getDirectRange() {
-        return directRange;
+    public int getLetr() {
+        return letr;
     }
 }
+class Direction{
+    public int masofa;
+    Direction(int masofa){
+        this.masofa = masofa;
 
-class Car {
-    private OutGoing outGoing;
-    private Capacity capacity;
-    private Oil oils;
+    }
 
-
-    public Car(OutGoing outGoing, Capacity capacity) {
-        this.outGoing = outGoing;
+    public int getMasofa() {
+        return masofa;
+    }
+}
+class Car{
+    Outgoing outgoing;
+    Capacity capacity;
+    int oilSum;
+    public Direction direction;
+    Car(Outgoing outgoing, Capacity capacity){
+        this.outgoing = outgoing;
         this.capacity = capacity;
-        this.oils = new Oil(0);
+        this.oilSum = 0;
+
     }
 
+    public boolean go(Direction direction){
+        this.direction = direction;
+        if (oilSum ==0) return false;
+        int range = oilSum * outgoing.getRoad();
+        if (range/outgoing.getLetr() > direction.getMasofa()){
+            oilSum -= (outgoing.letr *direction.getMasofa())/outgoing.getRoad();
+            return true;
+        }
+        return false;
 
-    boolean go(Direction direction) {
-        int requid = direction.getDirectRange() * outGoing.getRange();
-        if (oils.getOil() == 0) return false;
-        if (oils.getOil() >= requid) {
-            oils.setOil(oils.getOil() - requid);
+    }
+    public boolean addOil(Oil oil){
+        if(oilSum +oil.getTotalOil() <= capacity.getCapacity()){
+            oilSum +=oil.getTotalOil();
             return true;
         }
         return false;
     }
-
-    boolean addOil(Oil oil) {
-        if (capacity.getCapacity() >= oil.getOil() + oils.getOil()) {
-            oils.setOil(oils.getOil() + oil.getOil());
-            return true;
-        }
-        System.out.println("no empty space ");
-        return false;
+    public boolean isFullOil(){
+        return oilSum ==capacity.getCapacity();
     }
-
-    boolean isFull() {
-        return oils.getOil() == capacity.getCapacity();
+    public boolean hasOil(){
+        return oilSum >0;
     }
+    public int getMaxDirection(){
+        return (oilSum *outgoing.getRoad())/ outgoing.getLetr();
 
-    boolean hasOil() {
-        return oils.getOil() > 0;
-    }
-
-    int getMaxDirection() {
-        return oils.getOil() / outGoing.getRange();
     }
 }
+
